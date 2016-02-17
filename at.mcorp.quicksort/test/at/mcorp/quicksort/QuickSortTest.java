@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class QuickSortTest {
 
+
 	@Test
 	public void quickSortTest(){
 		int [] testDataArray =  new int[]{9,1,2,8,3,0,6,4,5,8,7};
@@ -56,4 +57,5 @@ public class QuickSortTest {
 		sortedArray = sort.sort(SortOrder.ASCENDING);
 		assertArrayEquals(new int []{0,1,2,3,3,4,4,5,6,7,8,9}, sortedArray);
 	}
+	
 }
