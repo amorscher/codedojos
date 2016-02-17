@@ -74,8 +74,8 @@ public class QuickSort<T extends Comparable<T>> {
 	/**
 	 * Performs a swap of the elements
 	 * 
-	 * @param swapLowIndex the element on the right to switchs
-	 * @param swapHighIndex the element on the left to switch the
+	 * @param swapLowIndex the element on the left to switch
+	 * @param swapHighIndex the element on the right to switch
 	 */
 	private void swap(int swapLowIndex, int swapHighIndex) {
 		T temp = arrayToSort[swapLowIndex];
