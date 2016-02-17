@@ -30,7 +30,7 @@ public class QuickSort<T extends Comparable<T>> {
 		// divide tow lists
 		while (swapLowIndex <= swapHighIndex) {
 
-			// search the first element which is not smaller which matches the condition
+			// search the first element from the left which matches the condition
 			while (conditionLeftPart(swapLowIndex,pivotElement)) {
 				swapLowIndex++;
 			}
@@ -45,14 +45,14 @@ public class QuickSort<T extends Comparable<T>> {
 			if (swapHighIndex >= swapLowIndex) {
 				// do a swap of the elements
 				swap(swapLowIndex, swapHighIndex);
-				// continue with the higher index
+				// adapt the indices
 				swapHighIndex--;
 				swapLowIndex++;
 			}
 
 		}
 		if (indexFrom < swapHighIndex) {
-			// repeat the sort for all the remaining elements on the rights
+			// repeat the sort for all the remaining elements on the left
 			arrayToSort = sort(indexFrom, swapHighIndex);
 		}
 		if (indexTo > swapLowIndex) {
