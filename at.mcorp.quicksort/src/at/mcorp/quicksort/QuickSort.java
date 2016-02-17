@@ -6,24 +6,24 @@ package at.mcorp.quicksort;
  * @author ambros
  *
  */
-public class QuickSort {
+public class QuickSort<T extends Comparable<T>> {
 
-	private int[] arrayToSort;
+	private T[] arrayToSort;
 	private SortOrder sortOrder;
 
-	public QuickSort(int[] arrayToSortParam) {
+	public QuickSort(T[] arrayToSortParam) {
 		this.arrayToSort = arrayToSortParam;
 	}
 
-	public int[] sort(SortOrder order) {
+	public T[] sort(SortOrder order) {
 		this.sortOrder = order;
 		return sort(0, arrayToSort.length - 1);
 	}
 
-	private int[] sort(int indexFrom, int indexTo) {
+	private T[] sort(int indexFrom, int indexTo) {
 		// get the pivot element
 		int pivotIndex = indexFrom + (indexTo - indexFrom) / 2;
-		int pivotElement = arrayToSort[pivotIndex];
+		T pivotElement = arrayToSort[pivotIndex];
 
 		int swapLowIndex = indexFrom;
 		int swapHighIndex = indexTo;
@@ -63,12 +63,12 @@ public class QuickSort {
 		return arrayToSort;
 	}
 
-	private boolean conditionLeftPart(int swapIndex, int pivotElement) {	
-		return sortOrder==SortOrder.ASCENDING?(arrayToSort[swapIndex] < pivotElement):(arrayToSort[swapIndex] > pivotElement);
+	private boolean conditionLeftPart(int swapIndex, T pivotElement) {	
+		return sortOrder==SortOrder.ASCENDING?(arrayToSort[swapIndex].compareTo(pivotElement))<0:(arrayToSort[swapIndex].compareTo(pivotElement))>0;
 	}
 
-	private boolean conditionRightPart(int swapIndex, int pivotElement) {
-		return sortOrder==SortOrder.ASCENDING?(arrayToSort[swapIndex] > pivotElement):(arrayToSort[swapIndex] < pivotElement);
+	private boolean conditionRightPart(int swapIndex, T pivotElement) {
+		return sortOrder==SortOrder.ASCENDING?(arrayToSort[swapIndex].compareTo(pivotElement))>0:(arrayToSort[swapIndex].compareTo(pivotElement))<0;
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class QuickSort {
 	 * @param swapHighIndex the element on the left to switch the
 	 */
 	private void swap(int swapLowIndex, int swapHighIndex) {
-		int temp = arrayToSort[swapLowIndex];
+		T temp = arrayToSort[swapLowIndex];
 		arrayToSort[swapLowIndex] = arrayToSort[swapHighIndex];
 		arrayToSort[swapHighIndex] = temp;
 	}
