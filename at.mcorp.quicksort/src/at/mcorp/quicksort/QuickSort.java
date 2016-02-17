@@ -10,7 +10,7 @@ public class QuickSort {
 
 	private int[] arrayToSort;
 	private SortOrder sortOrder;
-//ajdkashdksahdkwhkahdkahdkh
+
 	public QuickSort(int[] arrayToSortParam) {
 		this.arrayToSort = arrayToSortParam;
 	}
