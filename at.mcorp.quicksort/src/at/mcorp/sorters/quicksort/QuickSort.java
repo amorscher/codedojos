@@ -1,18 +1,19 @@
-package at.mcorp.quicksort;
+package at.mcorp.sorters.quicksort;
+
+import at.mcorp.sorters.AbstractSorter;
+import at.mcorp.sorters.SortOrder;
+import at.mcorp.sorters.utils.SorterUtils;
 
 /**
- * Class implements the Quick sort algorithm
- * 
+ * Implements the quick sort algorithm
  * @author ambros
  *
+ * @param <T> the type of the array values
  */
-public class QuickSort<T extends Comparable<T>> {
-
-	private T[] arrayToSort;
-	private SortOrder sortOrder;
+public class QuickSort<T extends Comparable<T>> extends AbstractSorter<T> {
 
 	public QuickSort(T[] arrayToSortParam) {
-		this.arrayToSort = arrayToSortParam;
+		super(arrayToSortParam);
 	}
 
 	public T[] sort(SortOrder order) {
@@ -31,12 +32,12 @@ public class QuickSort<T extends Comparable<T>> {
 		while (swapLowIndex <= swapHighIndex) {
 
 			// search the first element from the left which matches the condition
-			while (conditionLeftPart(swapLowIndex,pivotElement)) {
+			while (leftValueOK(swapLowIndex,pivotElement)) {
 				swapLowIndex++;
 			}
 
 			// search the first element form the right which matches the condition
-			while (conditionRightPart(swapHighIndex,pivotElement)) {
+			while (rightValueOK(swapHighIndex,pivotElement)) {
 				swapHighIndex--;
 			}
 
@@ -44,7 +45,7 @@ public class QuickSort<T extends Comparable<T>> {
 			// index
 			if (swapHighIndex >= swapLowIndex) {
 				// do a swap of the elements
-				swap(swapLowIndex, swapHighIndex);
+				SorterUtils.swap(arrayToSort,swapLowIndex, swapHighIndex);
 				// adapt the indices
 				swapHighIndex--;
 				swapLowIndex++;
@@ -63,24 +64,11 @@ public class QuickSort<T extends Comparable<T>> {
 		return arrayToSort;
 	}
 
-	private boolean conditionLeftPart(int swapIndex, T pivotElement) {	
-		return sortOrder==SortOrder.ASCENDING?(arrayToSort[swapIndex].compareTo(pivotElement))<0:(arrayToSort[swapIndex].compareTo(pivotElement))>0;
+	private boolean leftValueOK(int leftIndex, T pivotElement) {	
+		return sortOrder==SortOrder.ASCENDING?(arrayToSort[leftIndex].compareTo(pivotElement))<0:(arrayToSort[leftIndex].compareTo(pivotElement))>0;
 	}
 
-	private boolean conditionRightPart(int swapIndex, T pivotElement) {
-		return sortOrder==SortOrder.ASCENDING?(arrayToSort[swapIndex].compareTo(pivotElement))>0:(arrayToSort[swapIndex].compareTo(pivotElement))<0;
+	private boolean rightValueOK(int rightIndex, T pivotElement) {
+		return sortOrder==SortOrder.ASCENDING?(arrayToSort[rightIndex].compareTo(pivotElement))>0:(arrayToSort[rightIndex].compareTo(pivotElement))<0;
 	}
-	
-	/**
-	 * Performs a swap of the elements
-	 * 
-	 * @param swapLowIndex the element on the left to switch
-	 * @param swapHighIndex the element on the right to switch
-	 */
-	private void swap(int swapLowIndex, int swapHighIndex) {
-		T temp = arrayToSort[swapLowIndex];
-		arrayToSort[swapLowIndex] = arrayToSort[swapHighIndex];
-		arrayToSort[swapHighIndex] = temp;
-	}
-
 }

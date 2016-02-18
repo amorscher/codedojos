@@ -1,4 +1,4 @@
-package at.mcorp.quicksort;
+package at.corp.sorters;
 
 import static org.junit.Assert.assertArrayEquals;
 
@@ -6,19 +6,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
-import org.junit.runner.RunWith;
 
-/**
- * Test class for the {@link QuickSort} class by using {@link Theories} to
- * create a combination of integer values
- * 
- * @author ambros
- *
- */
-@RunWith(Theories.class)
-public class QuickSortTestWithTheories {
+import at.mcorp.sorters.SortOrder;
+import at.mcorp.sorters.Sorter;
+
+public abstract class TheoriesBasedSorterTest extends AbstractSorterTest {
 
 	@Theory
 	public void sortAscendingTest(Integer val1, Integer val2, Integer val3, Integer val4, Integer val5) {
@@ -31,7 +24,7 @@ public class QuickSortTestWithTheories {
 
 		// when
 		// do the quick sort
-		QuickSort<Integer> sort = new QuickSort<>(arrayToSort);
+		Sorter<Integer> sort = createSorter(arrayToSort);
 		Integer[] sortedArray = sort.sort(SortOrder.ASCENDING);
 
 		// then
@@ -49,7 +42,7 @@ public class QuickSortTestWithTheories {
 
 		// when
 		// do the quick sort
-		QuickSort<Integer> sort = new QuickSort<>(arrayToSort);
+		Sorter<Integer> sort =createSorter(arrayToSort);
 		Integer[] sortedArray = sort.sort(SortOrder.DESCENDING);
 
 		// then
