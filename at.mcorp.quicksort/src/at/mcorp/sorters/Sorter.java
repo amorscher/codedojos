@@ -12,7 +12,7 @@ public interface Sorter<T extends Comparable<T>> {
 	/**
 	 * Performs the sorting of the array
 	 * @param order determines how the array should be ordered
-	 * @return the ordered array
+	 * @return the ordered array h
 	 */
 	public T[] sort(SortOrder order);
 }
